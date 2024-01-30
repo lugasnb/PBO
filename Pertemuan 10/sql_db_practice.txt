@@ -1,0 +1,100 @@
+Microsoft Windows [Version 10.0.22631.3007]
+(c) Microsoft Corporation. All rights reserved.
+
+C:\Windows\System32>cd\
+
+C:\>cd xampp
+
+C:\xampp>cd mysql
+
+C:\xampp\mysql>cd bin
+
+C:\xampp\mysql\bin>mysql -u root -p
+Enter password:
+Welcome to the MariaDB monitor.  Commands end with ; or \g.
+Your MariaDB connection id is 22
+Server version: 10.4.32-MariaDB mariadb.org binary distribution
+
+Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+MariaDB [(none)]> create database klinik;
+Query OK, 1 row affected (0.003 sec)
+
+MariaDB [(none)]> use klinik;
+Database changed
+MariaDB [klinik]> create table obat(
+    -> id int primary key auto_increment,
+    -> kdobat varchar(10) unique,
+    -> nama varchar(100),
+    -> berat varchar(10),
+    -> bentuk varchar(50));
+Query OK, 0 rows affected (0.064 sec)
+
+MariaDB [klinik]> show tables;
++------------------+
+| Tables_in_klinik |
++------------------+
+| obat             |
++------------------+
+1 row in set (0.001 sec)
+
+MariaDB [klinik]> insert into obat(kdobat,nama,berat,bentuk)values('1001','Paracetamol','500 mg','Tablet');
+Query OK, 1 row affected (0.029 sec)
+
+MariaDB [klinik]> insert into obat(kdobat,nama,berat,bentuk)values('1002','Amoxicillin','250 mg','Kapsul');
+Query OK, 1 row affected (0.024 sec)
+
+MariaDB [klinik]> insert into obat(kdobat,nama,berat,bentuk)values('1003','Cetirizine','10 mg','Sirup');
+Query OK, 1 row affected (0.025 sec)
+
+MariaDB [klinik]> insert into obat(kdobat,nama,berat,bentuk)values('1004','Ibuprofen','200 mg','Tablet');
+Query OK, 1 row affected (0.025 sec)
+
+MariaDB [klinik]> insert into obat(kdobat,nama,berat,bentuk)values('1005','Dexamethasone','0.5 mg','Tablet');
+Query OK, 1 row affected (0.025 sec)
+
+MariaDB [klinik]> select * from obat;
++----+--------+---------------+--------+--------+
+| id | kdobat | nama          | berat  | bentuk |
++----+--------+---------------+--------+--------+
+|  1 | 1001   | Paracetamol   | 500 mg | Tablet |
+|  2 | 1002   | Amoxicillin   | 250 mg | Kapsul |
+|  3 | 1003   | Cetirizine    | 10 mg  | Sirup  |
+|  4 | 1004   | Ibuprofen     | 200 mg | Tablet |
+|  5 | 1005   | Dexamethasone | 0.5 mg | Tablet |
++----+--------+---------------+--------+--------+
+5 rows in set (0.000 sec)
+
+MariaDB [klinik]> update obat set kdobat='1006',nama='Loratadine',berat='10 mg',bentuk='Tablet'where id='5';
+Query OK, 1 row affected (0.024 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+MariaDB [klinik]> select * from obat;
++----+--------+-------------+--------+--------+
+| id | kdobat | nama        | berat  | bentuk |
++----+--------+-------------+--------+--------+
+|  1 | 1001   | Paracetamol | 500 mg | Tablet |
+|  2 | 1002   | Amoxicillin | 250 mg | Kapsul |
+|  3 | 1003   | Cetirizine  | 10 mg  | Sirup  |
+|  4 | 1004   | Ibuprofen   | 200 mg | Tablet |
+|  5 | 1006   | Loratadine  | 10 mg  | Tablet |
++----+--------+-------------+--------+--------+
+5 rows in set (0.001 sec)
+
+MariaDB [klinik]> delete from obat where kdobat='1003';
+Query OK, 1 row affected (0.025 sec)
+
+MariaDB [klinik]> select * from obat;
++----+--------+-------------+--------+--------+
+| id | kdobat | nama        | berat  | bentuk |
++----+--------+-------------+--------+--------+
+|  1 | 1001   | Paracetamol | 500 mg | Tablet |
+|  2 | 1002   | Amoxicillin | 250 mg | Kapsul |
+|  4 | 1004   | Ibuprofen   | 200 mg | Tablet |
+|  5 | 1006   | Loratadine  | 10 mg  | Tablet |
++----+--------+-------------+--------+--------+
+4 rows in set (0.001 sec)
+
+MariaDB [klinik]>
